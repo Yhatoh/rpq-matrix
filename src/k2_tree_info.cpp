@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
   }
 
   optind -= 1;
-  if(argc - optind != 4) usage_and_exit(argv[0]);
+  if(argc - optind != 3) usage_and_exit(argv[0]);
   argv += optind; argc -= optind;
 
   char fname[1000];
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 }
 
 void usage_and_exit(char* name) {
-  fprintf(stderr, "Usage:\n\t%s [options] filename size ones\n\n", name);
+  fprintf(stderr, "Usage:\n\t%s [options] filename size\n\n", name);
   fprintf(stderr, "Options:\n");
   fprintf(stderr, "\t-h      show this help message\n");    
   fprintf(stderr, "Show info about compressed matrix in filename\n\n");
