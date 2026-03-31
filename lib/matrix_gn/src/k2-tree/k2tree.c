@@ -454,24 +454,24 @@ static uint64_t collect32Info (k2tree T, k2node u, uint level,
      level--;
      lim = ((uint64_t)1)<<level;
      if ((r1 < lim) && (c1 < lim) && k2hasChild(T,u,0))
-	{ count = collect32(T,k2child(T,u,0),level,
+	{ count = collect32Info(T,k2child(T,u,0),level,
 			   r1,mmin(r2,lim-1),c1,mmin(c2,lim-1),
-			   roffs,coffs,buffer,count,cr);
+			   roffs,coffs,buffer,count,cr, nodes, leaves);
 	}
      if ((r1 < lim) && (c2 >= lim) && k2hasChild(T,u,1))
-	{ count = collect32(T,k2child(T,u,1),level,
+	{ count = collect32Info(T,k2child(T,u,1),level,
 			   r1,mmin(r2,lim-1),mmax(c1,lim)-lim,c2-lim,
-			   roffs,coffs+lim,buffer,count,cr);
+			   roffs,coffs+lim,buffer,count,cr, nodes, leaves);
 	}
      if ((r2 >= lim) && (c1 < lim) && k2hasChild(T,u,2))
-	{ count = collect32(T,k2child(T,u,2),level,
+	{ count = collect32Info(T,k2child(T,u,2),level,
 			   mmax(r1,lim)-lim,r2-lim,c1,mmin(c2,lim-1),
-			   roffs+lim,coffs,buffer,count,cr);
+			   roffs+lim,coffs,buffer,count,cr, nodes, leaves);
 	}
      if ((r2 >= lim) && (c2 >= lim) && k2hasChild(T,u,3))
-	{ count = collect32(T,k2child(T,u,3),level,
+	{ count = collect32Info(T,k2child(T,u,3),level,
 			   mmax(r1,lim)-lim,r2-lim,mmax(c1,lim)-lim,c2-lim,
-			   roffs+lim,coffs+lim,buffer,count,cr);
+			   roffs+lim,coffs+lim,buffer,count,cr, nodes, leaves);
 	}
      return count;
    }
