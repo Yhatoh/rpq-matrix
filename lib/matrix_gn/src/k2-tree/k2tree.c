@@ -434,6 +434,52 @@ uint64_t k2collect32 (k2tree T, uint32_t r1, uint32_t r2,
    { return collect32(T,k2root(T),k2levels(T),r1,r2,c1,c2,0,0,buffer,0,cr);
    }
 
+
+static uint64_t collect32Info (k2tree T, k2node u, uint level, 
+		         uint32_t r1, uint32_t r2, uint32_t c1, uint32_t c2, 
+		         uint32_t roffs, uint32_t coffs, 
+			 uint32_t *buffer, uint64_t count, uint cr, uint64_t* nodes, uint64_t* leaves)
+
+   { *nodes++;
+     if(level == 1) *leaves++;
+     uint64_t lim;
+     if (level==0)
+	{ if (buffer != NULL)
+	     { buffer[2*count+cr] = roffs; 
+	       buffer[2*count+1-cr] = coffs; 
+	     }
+	  return count+1;
+	}
+     level--;
+     lim = ((uint64_t)1)<<level;
+     if ((r1 < lim) && (c1 < lim) && k2hasChild(T,u,0))
+	{ count = collect32(T,k2child(T,u,0),level,
+			   r1,mmin(r2,lim-1),c1,mmin(c2,lim-1),
+			   roffs,coffs,buffer,count,cr);
+	}
+     if ((r1 < lim) && (c2 >= lim) && k2hasChild(T,u,1))
+	{ count = collect32(T,k2child(T,u,1),level,
+			   r1,mmin(r2,lim-1),mmax(c1,lim)-lim,c2-lim,
+			   roffs,coffs+lim,buffer,count,cr);
+	}
+     if ((r2 >= lim) && (c1 < lim) && k2hasChild(T,u,2))
+	{ count = collect32(T,k2child(T,u,2),level,
+			   mmax(r1,lim)-lim,r2-lim,c1,mmin(c2,lim-1),
+			   roffs+lim,coffs,buffer,count,cr);
+	}
+     if ((r2 >= lim) && (c2 >= lim) && k2hasChild(T,u,3))
+	{ count = collect32(T,k2child(T,u,3),level,
+			   mmax(r1,lim)-lim,r2-lim,mmax(c1,lim)-lim,c2-lim,
+			   roffs+lim,coffs+lim,buffer,count,cr);
+	}
+     return count;
+   }
+
+uint64_t k2collect32Info (k2tree T, uint32_t r1, uint32_t r2, 
+		    uint32_t c1, uint32_t c2, uint32_t *buffer, uint cr, uint64_t* nodes, uint64_t* leaves)
+   { return collect32(T,k2root(T),k2levels(T),r1,r2,c1,c2,0,0,buffer,0,cr, nodes, leaves);
+   }
+
 	// merges the bit arrays of two k2trees, writes its bit length
 	// in *len and number of elements in *telems. nodes per level are
 	// written in array *levels if not null, levels[0] is #leaves

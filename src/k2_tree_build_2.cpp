@@ -131,7 +131,6 @@ int main(int argc, char** argv) {
   }
 
   matrix M = matCreate32(1 << size, 1 << size, m, coords);
-  std::cout << M->logside << std::endl;
 
   if(check) {
     uint32_t* buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);

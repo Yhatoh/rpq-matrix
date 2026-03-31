@@ -88,3 +88,6 @@ target_link_libraries(k2_tree_mult matrix_gn)
 
 add_executable(k2_tree_sum src/k2_tree_sum.cpp)
 target_link_libraries(k2_tree_sum matrix_gn)
+
+add_executable(k2_tree_info src/k2_tree_info.cpp)
+target_link_libraries(k2_tree_info matrix_gn)

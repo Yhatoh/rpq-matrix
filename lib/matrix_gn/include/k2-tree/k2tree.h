@@ -83,6 +83,9 @@ uint64_t k2collect (k2tree T, uint64_t r1, uint64_t r2,
 uint64_t k2collect32 (k2tree T, uint32_t r1, uint32_t r2, 
 		    uint32_t c1, uint32_t c2, uint32_t *buffer, uint cr);
 
+uint64_t k2collect32Info (k2tree T, uint32_t r1, uint32_t r2, 
+		    uint32_t c1, uint32_t c2, uint32_t *buffer, uint cr, uint64_t* nodes, uint64_t* leaves);
+
         // merges the bit arrays of two k2trees, writes its bit length
         // in *len and number of elements in *telems. nodes per level are
         // written in array *levels if not null, levels[0] is #leaves
