@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
   }
 
   optind -= 1;
-  if(argc - optind != 2) usage_and_exit(argv[0]);
+  if(argc - optind != 4) usage_and_exit(argv[0]);
   argv += optind; argc -= optind;
 
   char fname[1000];
