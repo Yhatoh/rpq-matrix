@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
   bool check = 0;
   uint32_t size = 0;
 
-  while((c=getopt(argc, argv, "hrc")) != -1) {
+  while((c=getopt(argc, argv, "hsc")) != -1) {
     switch(c) {
       case 's':
         size = std::stoi(optarg); break;
