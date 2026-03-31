@@ -1725,6 +1725,7 @@ uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f
     nodes = leaves = nz = 0;
     uint32_t buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);
     nz = matCollect32Info(A, 0, (1ULL << A->logside) - 1, 0, (1ULL << A->logside) - 1, buffer, &nodes, &leaves);
+    printf("%" PRIu64 "\n", m);
     myfree(buffer);
     assert(nz != m);
 
