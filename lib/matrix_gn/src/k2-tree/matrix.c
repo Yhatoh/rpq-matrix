@@ -1731,17 +1731,17 @@ uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f
     fprintf(f, " nonzeros: %zu, nonzeros x row: %.3lf\n", nz, (double) nz / size);
     fprintf(f, " levels: %zu, nodes: %zu, leaves: %zu\n", A->logside, nodes, leaves);
     uint64_t matrix_info_bytes = sizeof(uint64_t) * 3 + 2 * sizeof(uint);
-    fprintf(f, "  info: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
+    fprintf(f, "  matrix info: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
             matrix_info_bytes, matrix_info_bytes * CHAR_BIT, (double) matrix_info_bytes * CHAR_BIT / nz);
     uint64_t k2tree_info_bytes = sizeof(uint64_t) + sizeof(uint) + sizeof(uint64_t*);
-    fprintf(f, "  info: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
+    fprintf(f, "  tree info: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
             k2tree_info_bytes, k2tree_info_bytes * CHAR_BIT, (double) k2tree_info_bytes * CHAR_BIT / nz);
     uint64_t bv_bytes = sizeof(uint64_t) + sizeof(uint64_t) + sizeof(uint64_t) * ((A->tree->B->size + w - 1) / w);
-    fprintf(f, "  info: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
+    fprintf(f, "  tree: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
             bv_bytes, bv_bytes * CHAR_BIT, (double) bv_bytes * CHAR_BIT / nz);
     uint64_t bv_rank_bytes = sizeof(uint16_t) * (A->tree->B->size + A->tree->B->k * w - 1) / (A->tree->B->k * w) +
                              sizeof(uint64_t) * (A->tree->B->size + (1 << w16) - 1) / (1 << w16);
-    fprintf(f, "  info: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
+    fprintf(f, "  rank: %" PRIu64 " bytes, %" PRIu64 " bits, %" PRIu64 " bits x nonzeros\n",
             bv_rank_bytes, bv_rank_bytes * CHAR_BIT, (double) bv_rank_bytes * CHAR_BIT / nz);
 
     uint64_t total_bytes = matrix_info_bytes + k2tree_info_bytes + bv_bytes + bv_rank_bytes;
