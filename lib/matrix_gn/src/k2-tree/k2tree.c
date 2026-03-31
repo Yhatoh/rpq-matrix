@@ -437,17 +437,13 @@ uint64_t k2collect32 (k2tree T, uint32_t r1, uint32_t r2,
 
 static uint64_t collect32Info (k2tree T, k2node u, uint level, 
 		         uint32_t r1, uint32_t r2, uint32_t c1, uint32_t c2, 
-		         uint32_t roffs, uint32_t coffs, 
-			 uint32_t *buffer, uint64_t count, uint cr, uint64_t* nodes, uint64_t* leaves)
+		         uint32_t roffs, uint32_t coffs,
+             uint64_t count, uint cr, uint64_t* nodes, uint64_t* leaves)
 
    { 
      uint64_t lim;
      if (level==0)
-	{ if (buffer != NULL)
-	     { buffer[2*count+cr] = roffs; 
-	       buffer[2*count+1-cr] = coffs; 
-	     }
-	  return count+1;
+	{ return count+1;
 	}
      (*nodes)++;
      if(level == 1) (*leaves)++;
@@ -477,8 +473,8 @@ static uint64_t collect32Info (k2tree T, k2node u, uint level,
    }
 
 uint64_t k2collect32Info (k2tree T, uint32_t r1, uint32_t r2, 
-		    uint32_t c1, uint32_t c2, uint32_t *buffer, uint cr, uint64_t* nodes, uint64_t* leaves)
-   { return collect32Info(T,k2root(T),k2levels(T),r1,r2,c1,c2,0,0,buffer,0,cr, nodes, leaves);
+		    uint32_t c1, uint32_t c2, uint cr, uint64_t* nodes, uint64_t* leaves)
+   { return collect32Info(T,k2root(T),k2levels(T),r1,r2,c1,c2,0,0,0,cr, nodes, leaves);
    }
 
 	// merges the bit arrays of two k2trees, writes its bit length

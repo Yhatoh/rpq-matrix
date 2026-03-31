@@ -1703,7 +1703,7 @@ double *matVectorMult (matrix A, double *vector)
    }
 
 uint64_t matCollect32Info (matrix M, uint32_t r1, uint32_t r2,
-		     uint32_t c1, uint32_t c2, uint32_t *buffer, uint64_t *nodes, uint64_t* leaves)
+		     uint32_t c1, uint32_t c2, uint64_t *nodes, uint64_t* leaves)
 
    { uint64_t aux;
      if (M->elems == 0) return 0;
@@ -1713,7 +1713,7 @@ uint64_t matCollect32Info (matrix M, uint32_t r1, uint32_t r2,
 	}
      if (r2 == fullSide32) r2 = M->height-1; // already in concrete repres
      if (c2 == fullSide32) c2 = M->width-1;
-     return k2collect32Info (M->tree,r1,r2,c1,c2,buffer,M->transposed, nodes, leaves);
+     return k2collect32Info (M->tree,r1,r2,c1,c2,M->transposed, nodes, leaves);
    }
 
 uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f)
@@ -1722,10 +1722,7 @@ uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f
 
     uint64_t nodes, leaves, nz;
     nodes = leaves = nz = 0;
-    uint32_t* buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);
-    nz = matCollect32Info(A, 0, (1ULL << A->logside) - 1, 0, (1ULL << A->logside) - 1, buffer, &nodes, &leaves);
-    nz = m;
-    myfree(buffer);
+    nz = matCollect32Info(A, 0, (1ULL << A->logside) - 1, 0, (1ULL << A->logside) - 1, &nodes, &leaves);
     assert(nz != m);
 
     fprintf(f, " nonzeros: %zu, nonzeros x row: %.3lf\n", nz, (double) nz / size);
