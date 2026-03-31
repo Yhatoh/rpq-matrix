@@ -1716,7 +1716,7 @@ uint64_t matCollect32Info (matrix M, uint32_t r1, uint32_t r2,
      return k2collect32Info (M->tree,r1,r2,c1,c2,M->transposed, nodes, leaves);
    }
 
-uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f)
+uint64_t matInfo(matrix A, uint64_t size, const char *fname, FILE *f)
   { fprintf(f, "file: %s\n", fname);
     fprintf(f, "matrix size: %" PRIu64 ", leaf size: 2, k2 internal size: %" PRIu64 "\n", size, (1ULL << A->logside));
 

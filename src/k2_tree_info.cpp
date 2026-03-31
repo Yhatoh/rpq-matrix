@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
   f = fopen(fname, "r");
   matrix M1 = matLoad(f);
   fclose(f);
-  matInfo(M1, std::atoll(argv[2]), std::atoll(argv[3]), fname, stdout);
+  matInfo(M1, std::atoll(argv[2]), fname, stdout);
   matDestroy(M1);
 
   return 0;
