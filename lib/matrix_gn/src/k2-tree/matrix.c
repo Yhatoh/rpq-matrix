@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
+#include <inttypes.h>
+#include <assert.h>
 #include "k2-tree/matrix.h"
 
 typedef struct
