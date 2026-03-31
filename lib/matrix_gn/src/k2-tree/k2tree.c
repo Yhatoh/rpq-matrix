@@ -477,7 +477,7 @@ static uint64_t collect32Info (k2tree T, k2node u, uint level,
 
 uint64_t k2collect32Info (k2tree T, uint32_t r1, uint32_t r2, 
 		    uint32_t c1, uint32_t c2, uint32_t *buffer, uint cr, uint64_t* nodes, uint64_t* leaves)
-   { return collect32(T,k2root(T),k2levels(T),r1,r2,c1,c2,0,0,buffer,0,cr, nodes, leaves);
+   { return collect32Info(T,k2root(T),k2levels(T),r1,r2,c1,c2,0,0,buffer,0,cr, nodes, leaves);
    }
 
 	// merges the bit arrays of two k2trees, writes its bit length
