@@ -77,14 +77,14 @@ int main(int argc, char** argv) {
   bool check = 0;
   uint32_t size = 0;
 
-  while((c=getopt(argc, argv, "hsc")) != -1) {
+  while((c=getopt(argc, argv, "hs:c")) != -1) {
     switch(c) {
       case 's':
-        size = std::stoi(optarg); break;
+        size = std::atoll(optarg); break;
       case 'c':
         check = 1; break;
       case 'h':
-        usage_and_exit(argv[0]);
+        usage_and_exit(argv[0]); break;
       case '?':
         fprintf(stderr, "Unkown option: %s", optarg);
         exit(1);
@@ -149,7 +149,7 @@ int main(int argc, char** argv) {
   }
   FILE *f;
 
-  path_file += ".k2db";
+  path_file += ".k2bfs";
   f = fopen(path_file.c_str(), "w");
   if (f == NULL) {
     fprintf(stderr, "Error: cannot create file %s\n", path_file.c_str());
