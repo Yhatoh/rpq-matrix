@@ -36,14 +36,14 @@ int main(int argc, char* argv[]) {
   f = fopen(fname, "r");
   matrix M1 = matLoad(f);
   fclose(f);
-  matInfo(M1);
+  matInfo(M1, std::atoll(argv[2]), std::atoll(argv[3]), fname, stdout);
   matDestroy(M1);
 
   return 0;
 }
 
 void usage_and_exit(char* name) {
-  fprintf(stderr, "Usage:\n\t%s [options] filename \n\n", name);
+  fprintf(stderr, "Usage:\n\t%s [options] filename size ones\n\n", name);
   fprintf(stderr, "Options:\n");
   fprintf(stderr, "\t-h      show this help message\n");    
   fprintf(stderr, "Show info about compressed matrix in filename\n\n");
