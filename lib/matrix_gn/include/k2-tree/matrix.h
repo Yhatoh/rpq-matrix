@@ -119,6 +119,6 @@ matrix matClosMult1 (uint64_t row, matrix A, uint pos, matrix B, uint64_t col);
         // V is assumed to be of size A->width, the output is of size A->height
 double *matVectorMult (matrix A, double *vector);
 
-uint64_t matInfo(matrix A);
+uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f);
 
 #endif
