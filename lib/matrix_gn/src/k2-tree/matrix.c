@@ -1720,12 +1720,11 @@ uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f
   { fprintf(f, "file: %s\n", fname);
     fprintf(f, "matrix size: %" PRIu64 ", leaf size: 2, k2 internal size: %" PRIu64 "\n", size, (1ULL << A->logside));
 
-    printf("%" PRIu64 "\n", m);
     uint64_t nodes, leaves, nz;
     nodes = leaves = nz = 0;
     uint32_t* buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);
     nz = matCollect32Info(A, 0, (1ULL << A->logside) - 1, 0, (1ULL << A->logside) - 1, buffer, &nodes, &leaves);
-    printf("%" PRIu64 "\n", m);
+    nz = m;
     myfree(buffer);
     assert(nz != m);
 
