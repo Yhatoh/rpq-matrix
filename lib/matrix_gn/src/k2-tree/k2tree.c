@@ -445,8 +445,8 @@ static uint64_t collect32Info (k2tree T, k2node u, uint level,
      if (level==0)
 	{ return count+1;
 	}
-     (*nodes)++;
      if(level == 1) (*leaves)++;
+     else (*nodes)++;
      level--;
      lim = ((uint64_t)1)<<level;
      if ((r1 < lim) && (c1 < lim) && k2hasChild(T,u,0))
