@@ -79,3 +79,12 @@ target_link_libraries(baseline_32_build baseline_gn)
 
 add_executable(baseline_build src/baseline_build.cpp)
 target_link_libraries(baseline_build baseline_gn)
+
+add_executable(k2_tree_build_2 src/k2_tree_build_2.cpp)
+target_link_libraries(k2_tree_build_2 baseline_gn)
+
+add_executable(k2_tree_mult src/k2_tree_mult.cpp)
+target_link_libraries(k2_tree_mult baseline_gn)
+
+add_executable(k2_tree_sum src/k2_tree_sum.cpp)
+target_link_libraries(k2_tree_sum baseline_gn)
