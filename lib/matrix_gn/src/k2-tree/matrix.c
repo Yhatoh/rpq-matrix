@@ -7,6 +7,7 @@
 #include <assert.h>
 #include "k2-tree/matrix.h"
 
+#define w16 (8*sizeof(uint16_t))
 typedef struct
    { uint64_t *bits;
      uint64_t ptr;
@@ -1722,7 +1723,7 @@ uint64_t matInfo(matrix A, uint64_t size, uint64_t m, const char *fname, FILE *f
     uint64_t nodes, leaves, nz;
     nodes = leaves = nz = 0;
     uint32_t buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);
-    nz = matCollect32Info(M, 0, (1ULL << A->logside) - 1, 0, (1ULL << A->logside) - 1, buffer, &nodes, &leaves);
+    nz = matCollect32Info(A, 0, (1ULL << A->logside) - 1, 0, (1ULL << A->logside) - 1, buffer, &nodes, &leaves);
     myfree(buffer);
     assert(nz != m);
 
