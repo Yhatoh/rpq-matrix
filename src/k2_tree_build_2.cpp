@@ -131,10 +131,11 @@ int main(int argc, char** argv) {
   }
 
   matrix M = matCreate32(1 << size, 1 << size, m, coords);
-  uint32_t* buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);
-  uint64_t m_q = matCollect32(M, 0, (1 << size) - 1, 0, (1 << size) - 1, buffer);
+  std::cout << M->logside << std::endl;
 
   if(check) {
+    uint32_t* buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);
+    uint64_t m_q = matCollect32(M, 0, (1 << size) - 1, 0, (1 << size) - 1, buffer);
     std::vector< std::pair< uint32_t, uint32_t > > check_ones;
     for(uint64_t i = 0; i < 2 * m; i += 2) {
       check_ones.push_back({buffer[i], buffer[i + 1]});
@@ -146,6 +147,7 @@ int main(int argc, char** argv) {
         exit(1);
       }
     }
+    myfree(buffer);
   }
   FILE *f;
 
@@ -159,9 +161,12 @@ int main(int argc, char** argv) {
   fclose(f);
   matDestroy(M);
   myfree(coords);
-  myfree(buffer);
   if(check) {
     f = fopen(path_file.c_str(), "r");
+    if (f == NULL) {
+      fprintf(stderr, "Error: cannot open file %s\n", path_file.c_str());
+      exit(1);
+    }
     M = matLoad(f);
     uint32_t* buffer = (uint32_t*) malloc(sizeof(uint32_t) * 2 * m);
     uint64_t m_q = matCollect32(M, 0, (1 << size) - 1, 0, (1 << size) - 1, buffer);
