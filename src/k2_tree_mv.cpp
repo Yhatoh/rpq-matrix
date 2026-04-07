@@ -61,11 +61,12 @@ int main(int argc, char** argv) {
   }
 
   double not_opt = 0;
-  for(size_t i = 0; i < 1000; i++) {
+  for(size_t i = 0; i < 100; i++) {
     double* ret = matVectorMult(M1, v_test);
     free(v_test); v_test = NULL;
     v_test = ret;
-    not_opt += v_test[0];
+    if(i & 1) not_opt += v_test[0];
+    else not_opt -= v_test[0];
   }
 
   printf("%f\n", not_opt);
