@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
     double* ret = matVectorMult(M1, v_test);
     free(v_test); v_test = NULL;
     v_test = ret;
-    double += v_test[0];
+    not_opt += v_test[0];
   }
 
   printf("%f\n", not_opt);
