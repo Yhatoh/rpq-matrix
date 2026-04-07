@@ -91,3 +91,6 @@ target_link_libraries(k2_tree_sum matrix_gn)
 
 add_executable(k2_tree_info src/k2_tree_info.cpp)
 target_link_libraries(k2_tree_info matrix_gn)
+
+add_executable(k2_tree_mv src/k2_tree_mv.cpp)
+target_link_libraries(k2_tree_mv matrix_gn)
