@@ -1723,6 +1723,7 @@ uint64_t matInfo(matrix A, uint64_t size, const char *fname, FILE *f)
     uint64_t nodes, leaves, nz;
     nodes = leaves = nz = 0;
     nz = matCollect32Info(A, 0, (1ULL << A->logside) - 1, 0, (1ULL << A->logside) - 1, &nodes, &leaves);
+    if(nz == 0) return 0;
     assert(nz != m);
 
     fprintf(f, " nonzeros: %zu, nonzeros x row: %.3lf\n", nz, (double) nz / size);

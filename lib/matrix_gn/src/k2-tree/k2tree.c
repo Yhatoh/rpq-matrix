@@ -91,34 +91,34 @@ static void k2write32 (uint level, uint64_t ptr, uint64_t n,
      uint v;
      for (v=0;v<=4;v++) cnt[v] = 0;
      for (i=0;i<2*n;i+=2)
-	 { v = 2 * ((coords1[i] >> level) & 1) 
-	       + ((coords1[i+1] >> level) & 1);
-	   cnt[v+1]++;
-	 }
+     { v = 2 * ((coords1[i] >> level) & 1) 
+       + ((coords1[i+1] >> level) & 1);
+       cnt[v+1]++;
+     }
      for (v=1;v<=4;v++)
-         bitsWriteA(B,ptr++,cnt[v]);
+       bitsWriteA(B,ptr++,cnt[v]);
      if (level)
-        { cnt[2] += cnt[1]; cnt[3] += cnt[2];
-          for (i=0;i<2*n;i+=2)
-	      { v = 2 * ((coords1[i] >> level) & 1) 
-		    + ((coords1[i+1] >> level) & 1);
-	        coords2[2*cnt[v]] = coords1[i];
-	        coords2[2*cnt[v]+1] = coords1[i+1];
-	        cnt[v]++;
-	      }
-	  prev = 0;
-          for (v=0;v<4;v++)
-	      { n = cnt[v]-prev;
-	        if (n) 
-	           { Q32[tail].level = level-1;
-	             Q32[tail].n = n;
-	             Q32[tail].coords1 = coords2+2*prev;
-	             Q32[tail].coords2 = coords1+2*prev;
-	             tail = (tail+1)%size;
-		     prev = cnt[v];
-	           }
-	      }
-	}
+     { cnt[2] += cnt[1]; cnt[3] += cnt[2];
+       for (i=0;i<2*n;i+=2)
+       { v = 2 * ((coords1[i] >> level) & 1) 
+         + ((coords1[i+1] >> level) & 1);
+         coords2[2*cnt[v]] = coords1[i];
+         coords2[2*cnt[v]+1] = coords1[i+1];
+         cnt[v]++;
+       }
+       prev = 0;
+       for (v=0;v<4;v++)
+       { n = cnt[v]-prev;
+         if (n) 
+         { Q32[tail].level = level-1;
+           Q32[tail].n = n;
+           Q32[tail].coords1 = coords2+2*prev;
+           Q32[tail].coords2 = coords1+2*prev;
+           tail = (tail+1)%size;
+           prev = cnt[v];
+         }
+       }
+     }
    }
 
 k2tree k2create (uint64_t n, uint nbits, uint64_t *coords)
