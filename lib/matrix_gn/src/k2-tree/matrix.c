@@ -1514,30 +1514,30 @@ matrix matClos (matrix A, uint pos)
 
 matrix matClos0 (matrix A, uint pos)
 
-   { matrix M,P,S,Id;
-     uint64_t elems;
+{ matrix M,P,S,Id;
+  uint64_t elems;
 
-     if (!pos)
-        { Id = matId(mmax(A->width,A->height));
-          A = matSum(A,Id);
-          matDestroy(Id);
-	}
-     elems = A->elems;
-     if (elems == 0) return matCopy(A); // can only be pos, A not to destroy
-     P = matMult (A,A);
-     S = matSum (A,P);
-     if (!pos) matDestroy(A);
-     while (S->elems != elems)
-	{ elems = S->elems;
-	  matDestroy(P);
-	  P = matMult(S,S);
-	  M = matSum(S,P);
-	  matDestroy(S);
-	  S = M;
-	}
-     matDestroy(P);
-     return S;
-   }
+  if (!pos)
+  { Id = matId(mmax(A->width,A->height));
+    A = matSum(A,Id);
+    matDestroy(Id);
+  }
+  elems = A->elems;
+  if (elems == 0) return matCopy(A); // can only be pos, A not to destroy
+  P = matMult (A,A);
+  S = matSum (A,P);
+  if (!pos) matDestroy(A);
+  while (S->elems != elems)
+  { elems = S->elems;
+    matDestroy(P);
+    P = matMult(S,S);
+    M = matSum(S,P);
+    matDestroy(S);
+    S = M;
+  }
+  matDestroy(P);
+  return S;
+}
 
         // versions to chose row row or column col at the end
 	// here we restrict first to the row/column even if we lose the

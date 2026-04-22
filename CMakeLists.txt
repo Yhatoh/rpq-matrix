@@ -94,3 +94,9 @@ target_link_libraries(k2_tree_info matrix_gn)
 
 add_executable(k2_tree_mv src/k2_tree_mv.cpp)
 target_link_libraries(k2_tree_mv matrix_gn)
+
+add_executable(k2_tree_tclos src/k2_tree_tclos.cpp)
+target_link_libraries(k2_tree_tclos matrix_gn)
+
+add_executable(k2_tree_tclos0 src/k2_tree_tclos0.cpp)
+target_link_libraries(k2_tree_tclos0 matrix_gn)
