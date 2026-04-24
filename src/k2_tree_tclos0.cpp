@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
   }
 
   optind -= 1;
-  if(argc - optind != 3) usage_and_exit(argv[0]);
+  if(argc - optind != 2) usage_and_exit(argv[0]);
   argv += optind; argc -= optind;
 
   std::string k2_path = argv[1];
@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 }
 
 void usage_and_exit(char* name) {
-  fprintf(stderr, "Usage:\n\t%s [options] filename1 filename2 \n\n", name);
+  fprintf(stderr, "Usage:\n\t%s [options] filename1 \n\n", name);
   fprintf(stderr, "Options:\n");
   fprintf(stderr, "\t-t      transpose matrix in filename1\n");    
   fprintf(stderr, "\t-h      show this help message\n");    
