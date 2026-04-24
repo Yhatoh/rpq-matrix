@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
   if(tA) *M1 = matTranspose(M1);
 
   matrix M2 = matClos0(M1, 1);
-  k2_1_path += ".tc";
+  k2_1_path += ".tc0";
   f = fopen(k2_1_path.c_str(), "w");
   matSave(M2, f);
 
