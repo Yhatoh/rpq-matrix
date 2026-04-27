@@ -119,7 +119,7 @@ matrix matClosMult1 (uint64_t row, matrix A, uint pos, matrix B, uint64_t col);
         // multiplies M by vector V. allocates and returns the result M x V
         // use matrix transposition to do V^T x M = M^T x V (transposed vector)
         // V is assumed to be of size A->width, the output is of size A->height
-double *matVectorMult (matrix A, double *vector);
+double *matVectorMult (matrix A, double *vector, size_t size);
 
 uint64_t matInfo(matrix A, uint64_t size, const char *fname, FILE *f);
 
