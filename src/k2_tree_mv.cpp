@@ -69,6 +69,7 @@ int main(int argc, char** argv) {
     not_opt += v_test[0];
   }
 
+  free(v_test);
   printf("%f\n", not_opt);
   matDestroy(M1);
 
