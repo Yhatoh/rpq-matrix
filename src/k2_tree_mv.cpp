@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
   }
 
   optind -= 1;
-  if(argc - optind != 3) usage_and_exit(argv[0]);
+  if(argc - optind != 4) usage_and_exit(argv[0]);
   argv += optind; argc -= optind;
 
   std::string k2_path = argv[1];
