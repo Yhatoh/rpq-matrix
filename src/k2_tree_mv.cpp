@@ -46,6 +46,7 @@ int main(int argc, char** argv) {
 
   std::string k2_path = argv[1];
   std::string vec_path = argv[2];
+  size_t size = std::atoll(argv[3]);
 
   FILE *f;
   f = fopen(k2_path.c_str(), "r");
@@ -53,10 +54,10 @@ int main(int argc, char** argv) {
   fclose(f);
   if(tA) *M1 = matTranspose(M1);
 
-  double* v_test = (double*) malloc(sizeof(double) * M1->width);
+  double* v_test = (double*) malloc(sizeof(double) * size);
   f = fopen(vec_path.c_str(), "r");
-  size_t bits_read = fread(v_test, sizeof(double), M1->width, f);
-  if(bits_read != M1->width) {
+  size_t bits_read = fread(v_test, sizeof(double), size, f);
+  if(bits_read != size) {
     fprintf(stderr, "reading incorrectly from vecto file");
   }
 
@@ -65,8 +66,7 @@ int main(int argc, char** argv) {
     double* ret = matVectorMult(M1, v_test);
     free(v_test); v_test = NULL;
     v_test = ret;
-    if(i & 1) not_opt += v_test[0];
-    else not_opt -= v_test[0];
+    not_opt += v_test[0];
   }
 
   printf("%f\n", not_opt);

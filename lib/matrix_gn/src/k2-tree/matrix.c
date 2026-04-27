@@ -1687,14 +1687,14 @@ static void k2vectorMult (k2tree tree, k2node node, uint level,
 	}
    }
 
-double *matVectorMult (matrix A, double *vector)
+double *matVectorMult (matrix A, double *vector, size_t size)
 
    { double *W; // W = MxV
      uint i;
 
      if (A->height == 0) return NULL;
-     W = (double*)myalloc(A->height * sizeof(double));
-     for (i=0;i<A->height;i++) W[i] = 0;
+     W = (double*)myalloc(size * sizeof(double));
+     for (i=0;i<size;i++) W[i] = 0;
      if (A->elems)
         { mapA = A->transposed ? mapTr : mapId;
           k2vectorMult(A->tree,k2root(A->tree),k2levels(A->tree),vector,W);
